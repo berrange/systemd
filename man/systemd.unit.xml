@@ -1319,6 +1319,27 @@
         </varlistentry>
 
         <varlistentry>
+          <term><varname>ConditionConfidentialVirtualization=</varname></term>
+
+          <listitem><para>Check whether the system is executed in a virtualized environment that offers
+          confidentiality from the host OS / admin, and optionally test whether it is a specific
+          implementation. Takes either boolean value to check if being executed in any confidential
+          virtualized environment, or one of
+          <literal>sev</literal>,
+          <literal>sev-es</literal>,
+          <literal>sev-snp</literal>,
+          <literal>tdx</literal> to test
+          against a specific implementation. See
+          <citerefentry><refentrytitle>systemd-detect-conf-virt</refentrytitle><manvolnum>1</manvolnum></citerefentry>
+          for a full list of known confidential virtualization technologies and their identifiers. The
+          test may be negated by prepending an exclamation mark. Note that this answer is only
+          advisory and should only be used for limiting services / features that are exposed in a
+          confidential environment. Sensitive data should not be released based on this condition,
+          only cryptographic validation of an attestation report is suitable that purpose.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term><varname>ConditionHost=</varname></term>
 
           <listitem><para><varname>ConditionHost=</varname> may be used to match against the hostname or

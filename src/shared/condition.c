@@ -24,6 +24,7 @@
 #include "cgroup-util.h"
 #include "compare-operator.h"
 #include "condition.h"
+#include "conf-virt.h"
 #include "cpu-set-util.h"
 #include "creds-util.h"
 #include "efi-api.h"
@@ -451,6 +452,27 @@ static int condition_test_virtualization(Condition *c, char **env) {
 
         /* Finally compare id */
         return v != VIRTUALIZATION_NONE && streq(c->parameter, virtualization_to_string(v));
+}
+
+static int condition_test_confidential_virtualization(Condition *c, char **env) {
+        ConfidentialVirtualization v;
+        int b;
+
+        assert(c);
+        assert(c->parameter);
+        assert(c->type == CONDITION_CONFIDENTIAL_VIRTUALIZATION);
+
+        v = detect_confidential_virtualization();
+        if (v < 0)
+                return v;
+
+        /* First, compare with yes/no */
+        b = parse_boolean(c->parameter);
+        if (b >= 0)
+                return b == (v != CONFIDENTIAL_VIRTUALIZATION_NONE);
+
+        /* Finally compare id */
+        return v != CONFIDENTIAL_VIRTUALIZATION_NONE && streq(c->parameter, confidential_virtualization_to_string(v));
 }
 
 static int condition_test_architecture(Condition *c, char **env) {
@@ -1159,6 +1181,7 @@ int condition_test(Condition *c, char **env) {
                 [CONDITION_KERNEL_VERSION]           = condition_test_kernel_version,
                 [CONDITION_CREDENTIAL]               = condition_test_credential,
                 [CONDITION_VIRTUALIZATION]           = condition_test_virtualization,
+                [CONDITION_CONFIDENTIAL_VIRTUALIZATION] = condition_test_confidential_virtualization,
                 [CONDITION_SECURITY]                 = condition_test_security,
                 [CONDITION_CAPABILITY]               = condition_test_capability,
                 [CONDITION_HOST]                     = condition_test_host,
@@ -1272,6 +1295,7 @@ static const char* const condition_type_table[_CONDITION_TYPE_MAX] = {
         [CONDITION_ARCHITECTURE] = "ConditionArchitecture",
         [CONDITION_FIRMWARE] = "ConditionFirmware",
         [CONDITION_VIRTUALIZATION] = "ConditionVirtualization",
+        [CONDITION_CONFIDENTIAL_VIRTUALIZATION] = "ConditionConfidentialVirtualization",
         [CONDITION_HOST] = "ConditionHost",
         [CONDITION_KERNEL_COMMAND_LINE] = "ConditionKernelCommandLine",
         [CONDITION_KERNEL_VERSION] = "ConditionKernelVersion",

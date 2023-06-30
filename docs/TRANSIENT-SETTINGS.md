@@ -72,6 +72,7 @@ Most generic unit settings are available for transient units.
 ✓ ConditionArchitecture=
 ✓ ConditionFirmware=
 ✓ ConditionVirtualization=
+✓ ConditionConfidentialVirtualization=
 ✓ ConditionSecurity=
 ✓ ConditionCapability=
 ✓ ConditionHost=

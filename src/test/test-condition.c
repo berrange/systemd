@@ -856,6 +856,34 @@ TEST(condition_test_virtualization) {
         }
 }
 
+TEST(condition_test_confidential_virtualization) {
+        Condition *condition;
+        int r;
+
+        condition = condition_new(CONDITION_CONFIDENTIAL_VIRTUALIZATION, "garbage oifdsjfoidsjoj", false, false);
+        assert_se(condition);
+        r = condition_test(condition, environ);
+        if (ERRNO_IS_PRIVILEGE(r))
+                return;
+        log_info("ConditionConfidentialVirtualization=garbage → %i", r);
+        assert_se(r == 0);
+        condition_free(condition);
+
+        NULSTR_FOREACH(virt,
+                       "sev\0"
+                       "sev-es\0"
+                       "sev-snp\0"
+                       "tdx\0") {
+
+                condition = condition_new(CONDITION_CONFIDENTIAL_VIRTUALIZATION, virt, false, false);
+                assert_se(condition);
+                r = condition_test(condition, environ);
+                log_info("ConditionConfidentialVirtualization=%s → %i", virt, r);
+                assert_se(r >= 0);
+                condition_free(condition);
+        }
+}
+
 TEST(condition_test_user) {
         Condition *condition;
         char* uid;
