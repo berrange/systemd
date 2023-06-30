@@ -1,0 +1,130 @@
+<?xml version='1.0'?> <!--*-nxml-*-->
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<!-- SPDX-License-Identifier: LGPL-2.1-or-later -->
+
+<refentry id="systemd-detect-confidential-virt"
+          xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <refentryinfo>
+    <title>systemd-detect-confidential-virt</title>
+    <productname>systemd</productname>
+  </refentryinfo>
+
+  <refmeta>
+    <refentrytitle>systemd-detect-confidential-virt</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>systemd-detect-confidential-virt</refname>
+    <refpurpose>Detect execution in a confidential virtualized environment</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>systemd-detect-confidential-virt</command>
+      <arg choice="opt" rep="repeat">OPTIONS</arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><command>systemd-detect-confidential-virt</command> detects
+    execution in a confidential virtualized environment. It identifies
+    the confidential virtualization technology. <filename>systemd-detect-confidential-virt</filename>
+    exits with a return value of 0 (success) if a confidential virtualization
+    technology is detected, and non-zero (error) otherwise.</para>
+
+    <para>When executed without <option>--quiet</option> will print a
+    short identifier for the detected confidential virtualization
+    technology. The following technologies are currently identified:</para>
+
+    <table>
+      <title>Known confidental virtualization technologies</title>
+      <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+        <colspec colname="id" />
+        <colspec colname="product" />
+        <thead>
+          <row>
+            <entry>ID</entry>
+            <entry>Product</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><varname>sev</varname></entry>
+            <entry>AMD SEV (Zen)<entry>
+          </row>
+
+          <row>
+            <entry><varname>sev-es</varname></entry>
+            <entry>AMD SEV-ES (Encrypted State / Zen 2)<entry>
+          </row>
+
+          <row>
+            <entry><varname>sev</varname></entry>
+            <entry>AMD SEV-SNP (Secure Nested Paging / Zen 3)<entry>
+          </row>
+
+          <row>
+            <entry><varname>tdx</varname></entry>
+            <entry>Intel TDX<entry>
+          </row>
+
+        </tbody>
+      </tgroup>
+    </table>
+
+    <para>The checks are performed by examining CPUID reports and should be
+    treated as advisory only. The check is suitable as a signal to allow
+    certain functionality / features to be disabled, but should not be used
+    as a condition for releasing sensitive data. Full cryptographic validation
+    of an attestation report must be considered a pre-requisite used for data
+    release.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Options</title>
+
+    <para>The following options are understood:</para>
+
+    <variablelist>
+
+      <varlistentry>
+        <term><option>-q</option></term>
+        <term><option>--quiet</option></term>
+
+        <listitem><para>Suppress output of the virtualization
+        technology identifier.</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>--list</option></term>
+
+        <listitem><para>Output all currently known and detectable confidential virtualization technologies.</para></listitem>
+      </varlistentry>
+
+      <xi:include href="standard-options.xml" xpointer="help" />
+      <xi:include href="standard-options.xml" xpointer="version" />
+    </variablelist>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Exit status</title>
+
+    <para>If a confidential virtualization technology is detected, 0 is returned, a
+    non-zero code otherwise.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+    <para>
+      <citerefentry><refentrytitle>systemd</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+      <citerefentry><refentrytitle>systemd-detect-virt</refentrytitle><manvolnum>1</manvolnum></citerefentry>
+    </para>
+  </refsect1>
+
+</refentry>

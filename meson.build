@@ -3811,6 +3811,16 @@ public_programs += executable(
         install : true)
 
 public_programs += executable(
+        'systemd-detect-confidential-virt',
+        'src/detect-confidential-virt/detect-confidential-virt.c',
+        include_directories : includes,
+        link_with : [libshared],
+        dependencies : [userspace,
+                        versiondep],
+        install_rpath : rootpkglibdir,
+        install : true)
+
+public_programs += executable(
         'systemd-delta',
         'src/delta/delta.c',
         include_directories : includes,

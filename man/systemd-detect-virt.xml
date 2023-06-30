@@ -289,6 +289,7 @@
     <para>
       <citerefentry><refentrytitle>systemd</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
       <citerefentry><refentrytitle>systemd-nspawn</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+      <citerefentry><refentrytitle>systemd-detect-confidential-virt</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
       <citerefentry><refentrytitle>chroot</refentrytitle><manvolnum>2</manvolnum></citerefentry>,
       <citerefentry project='man-pages'><refentrytitle>namespaces</refentrytitle><manvolnum>7</manvolnum></citerefentry>
     </para>
