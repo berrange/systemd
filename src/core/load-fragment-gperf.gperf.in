@@ -380,6 +380,7 @@ Unit.AssertNeedsUpdate,                  config_parse_unit_condition_path,      
 Unit.AssertFirstBoot,                    config_parse_unit_condition_string,          CONDITION_FIRST_BOOT,               offsetof(Unit, asserts)
 Unit.AssertArchitecture,                 config_parse_unit_condition_string,          CONDITION_ARCHITECTURE,             offsetof(Unit, asserts)
 Unit.AssertVirtualization,               config_parse_unit_condition_string,          CONDITION_VIRTUALIZATION,           offsetof(Unit, asserts)
+Unit.AssertConfidentialVirtualization,   config_parse_unit_condition_string,          CONDITION_CONFIDENTIAL_VIRTUALIZATION, offsetof(Unit, asserts)
 Unit.AssertHost,                         config_parse_unit_condition_string,          CONDITION_HOST,                     offsetof(Unit, asserts)
 Unit.AssertKernelCommandLine,            config_parse_unit_condition_string,          CONDITION_KERNEL_COMMAND_LINE,      offsetof(Unit, asserts)
 Unit.AssertKernelVersion,                config_parse_unit_condition_string,          CONDITION_KERNEL_VERSION,           offsetof(Unit, asserts)

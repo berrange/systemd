@@ -1334,6 +1334,7 @@ static const char* const assert_type_table[_CONDITION_TYPE_MAX] = {
         [CONDITION_ARCHITECTURE] = "AssertArchitecture",
         [CONDITION_FIRMWARE] = "AssertFirmware",
         [CONDITION_VIRTUALIZATION] = "AssertVirtualization",
+        [CONDITION_CONFIDENTIAL_VIRTUALIZATION] = "AssertConfidentailVirtualization",
         [CONDITION_HOST] = "AssertHost",
         [CONDITION_KERNEL_COMMAND_LINE] = "AssertKernelCommandLine",
         [CONDITION_KERNEL_VERSION] = "AssertKernelVersion",

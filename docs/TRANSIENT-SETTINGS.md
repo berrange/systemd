@@ -95,6 +95,7 @@ Most generic unit settings are available for transient units.
 ✓ AssertKernelVersion=
 ✓ AssertArchitecture=
 ✓ AssertVirtualization=
+✓ AssertConfidentialVirtualization=
 ✓ AssertSecurity=
 ✓ AssertCapability=
 ✓ AssertHost=

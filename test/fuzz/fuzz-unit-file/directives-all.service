@@ -35,6 +35,7 @@ AssertPathIsSymbolicLink=
 AssertSecurity=
 AssertUser=
 AssertVirtualization=
+AssertConfidentialVirtualization=
 Backlog=
 Before=
 BindIPv6Only=

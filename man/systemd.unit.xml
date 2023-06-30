@@ -1785,6 +1785,7 @@
         <varlistentry>
           <term><varname>AssertArchitecture=</varname></term>
           <term><varname>AssertVirtualization=</varname></term>
+          <term><varname>AssertConfidentialVirtualization=</varname></term>
           <term><varname>AssertHost=</varname></term>
           <term><varname>AssertKernelCommandLine=</varname></term>
           <term><varname>AssertKernelVersion=</varname></term>
